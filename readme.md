@@ -29,8 +29,5 @@ O sistema deve manter a _API_ atual para o serviço de recomendação por preço
 
 É desejável que os novos fluxos estejam cobertos com testes integrados.
 
-## Tudo funciona?
-De:[william.jose@totvs.com.br] (mailto:william.jose@totvs.com.br)
-Envie seu PR para [rafael.goes@totvs.com.br](mailto:rafael.goes@totvs.com.br).
 
 
