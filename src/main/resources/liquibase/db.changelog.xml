@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+	<changeSet id="Create product table" author="gleidson.brito">
+		<createTable tableName="product">
+			<column name="id" type="int">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="name" type="varchar(255)">
+			</column>
+			<column name="description" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+			<column name="price" type="int">
+			</column>
+		</createTable>
+		<createSequence sequenceName="PRODUCT_ID_SEQ"/>
+	</changeSet>
+
+	<changeSet id="Create product_category table" author="gleidson.brito">
+		<createTable tableName="product_category">
+			<column name="id" type="int">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="name" type="varchar(255)">
+			</column>
+		</createTable>
+		<createSequence sequenceName="product_category_id_seq"/>
+	</changeSet>
+
+	<changeSet id="Add column product.product_category_id" author="gleidson.brito">
+		<addColumn tableName="product">
+			<column name="product_category_id" type="int">
+				<constraints nullable="false" />
+			</column>
+		</addColumn>
+		<addForeignKeyConstraint constraintName="fk_product_category"
+			baseColumnNames="product_category_id" baseTableName="product"
+			referencedTableName="product_category" referencedColumnNames="id" />
+	</changeSet>
+
+	<changeSet id="Create stock_item table" author="gleidson.brito">
+		<createTable tableName="stock_item">
+			<column name="id" type="int">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="product_id" type="int">
+				<constraints unique="true" />
+			</column>
+			<column name="stock" type="int">
+			</column>
+		</createTable>
+		<addForeignKeyConstraint constraintName="stock_item_product_id_fkey"
+			baseColumnNames="product_id" baseTableName="stock_item"
+			referencedTableName="product" referencedColumnNames="id" />
+		<createSequence sequenceName="stock_item_id_seq"/>
+	</changeSet>
+
+	<changeSet id="Create user table" author="gleidson.brito">
+		<createTable tableName="user_table">
+			<column name="id" type="int">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="first_name" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="last_name" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="username" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="password" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="birthdate" type="date">
+				<constraints nullable="false" />
+			</column>
+			<column name="active" type="tinyint">
+				<constraints checkConstraint="active = 0 OR active = 1"
+					nullable="false" />
+			</column>
+		</createTable>
+		<createSequence sequenceName="user_id_seq"/>
+	</changeSet>
+
+	<changeSet id="Add columns user.token and user.token_expiration" author="gleidson.brito">
+		<addColumn tableName="user_table">
+			<column name="token" type="varchar(64)">
+			</column>
+		</addColumn>
+		<addColumn tableName="user_table">
+			<column name="token_expiration" type="datetime">
+			</column>
+		</addColumn>
+	</changeSet>
+
+	<changeSet id="Add columns product.weight and product.volume" author="gleidson.brito">
+		<addColumn tableName="product">
+			<column name="weight" type="int" valueNumeric="1"
+				remarks="the weight in grams">
+				<constraints nullable="false" />
+			</column>
+			<column name="volume" type="int" valueNumeric="1"
+				remarks="the volume in cubic centimeters">
+				<constraints nullable="false" />
+			</column>
+		</addColumn>
+	</changeSet>
+
+	<changeSet id="Add not-null constraints at columns product.price" author="gleidson.brito">
+		<addNotNullConstraint columnName="price"
+			defaultNullValue="2147483647" tableName="product" columnDataType="int" />
+	</changeSet>
+
+	<changeSet id="Add test entities" author="tomas.chaib" context="integrated-test">
+		<comment>Adiciona usuário e categoria para testes integrados</comment>
+		<insert tableName="product_category">
+			<column name="id" valueSequenceNext="product_category_id_seq"></column>
+			<column name="name" value="not categorized"></column>
+		</insert>
+		<insert tableName="user_table">
+			<column name="id" valueSequenceNext="user_id_seq" />
+			<column name="first_name" value="neolog"/>
+			<column name="last_name" value="neolog"/>
+			<column name="username" value="neolog"/>
+			<column name="password" value="neolog"/>
+			<column name="birthdate" value="2019-03-04"/>
+			<column name="active" valueBoolean="true"/>
+			<column name="token" value="1234"/>
+			<column name="token_expiration" value="2099-03-04"/>
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>
