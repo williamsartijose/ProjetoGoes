@@ -29,5 +29,26 @@ O sistema deve manter a _API_ atual para o serviço de recomendação por preço
 
 É desejável que os novos fluxos estejam cobertos com testes integrados.
 
+## O que foi criado para o  Enunciado
+
+
+#### SuggestionParamaters
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/1.PNG)
+
+#### ProblemFactory
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/2.png)
+
+#### SuggestedItem
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/3.png)
+
+#### SuggestionService
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/4.png)
+
+#### SuggestionServiceImpl
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/5.png)
+
+
+
+
 
 
