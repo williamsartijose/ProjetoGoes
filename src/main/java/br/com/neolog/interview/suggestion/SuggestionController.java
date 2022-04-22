@@ -18,12 +18,33 @@ class SuggestionController
     private SuggestionService suggestionService;
 
     @RequestMapping( method = RequestMethod.POST )
-    SuggestionResult suggest(
+    public SuggestionResult suggest(@RequestBody @Valid final SuggestionParamaters criteria )
+    {
+        final List<SuggestedItem> suggestion = suggestionService.produce( criteria );
+        return new SuggestionResult( suggestion );
+    }
+//sugetion
+    @RequestMapping( method = RequestMethod.POST, value = "/sugetionWeight" )
+    SuggestionResult suggestWeight(
         @RequestBody
         @Valid
         final SuggestionParamaters criteria )
     {
-        final List<SuggestedItem> suggestion = suggestionService.produce( criteria );
+        final List<SuggestedItem> suggestion = suggestionService.sugestionWeight( criteria );
         return new SuggestionResult( suggestion );
+
+
+    }
+
+    @RequestMapping( method = RequestMethod.POST, value = "/sugestionVolume" )
+    SuggestionResult sugestionVolume(
+            @RequestBody
+            @Valid
+            final SuggestionParamaters criteria )
+    {
+        final List<SuggestedItem> suggestion = suggestionService.sugestionVolume( criteria );
+        return new SuggestionResult( suggestion );
+
+
     }
 }

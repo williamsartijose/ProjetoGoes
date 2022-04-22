@@ -33,9 +33,7 @@ class SuggestionServiceImpl
     private ProductRepository productRepository;
 
     @Override
-    public List<SuggestedItem> produce(
-        @Valid
-        final SuggestionParamaters criteria )
+    public List<SuggestedItem> produce(@Valid final SuggestionParamaters criteria )
     {
         final Problem problem = problemFactoryService.create( criteria );
         final Solution solution = solver.solve( problem );
@@ -60,4 +58,24 @@ class SuggestionServiceImpl
             .collect( toList() );
         // @formatter:on
     }
+
+    // sobrescrita do metodo q interface obriga ter
+    @Override
+    public List<SuggestedItem> sugestionWeight(
+        SuggestionParamaters criteria )
+    {
+        final Problem problem = problemFactoryService.sugestionWeight( criteria );
+        final Solution solution = solver.solve( problem );//
+        final List<SuggestedItem> suggestions = convertItemsToSuggestions( solution.getItems() );
+        return suggestions;
+    }
+
+    @Override
+    public List<SuggestedItem> sugestionVolume(SuggestionParamaters criteria) {
+        final Problem problem = problemFactoryService.sugestionVolume( criteria );
+        final Solution solution = solver.solve( problem );//
+        final List<SuggestedItem> suggestions = convertItemsToSuggestions( solution.getItems() );
+        return suggestions;
+    }
+
 }

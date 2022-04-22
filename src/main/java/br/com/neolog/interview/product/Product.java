@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -18,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import br.com.neolog.interview.category.ProductCategory;
 
 @Entity
+@Table( name = "product" )
 public class Product
 {
     @Id

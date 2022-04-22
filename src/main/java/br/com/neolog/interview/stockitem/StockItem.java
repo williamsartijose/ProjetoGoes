@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -16,6 +17,7 @@ import com.google.common.base.MoreObjects;
 import br.com.neolog.interview.product.Product;
 
 @Entity
+@Table( name = "stock_item" )
 public class StockItem
 {
     @Id
@@ -93,9 +95,7 @@ public class StockItem
     @Override
     public String toString()
     {
-        return MoreObjects.toStringHelper( this )
-            .add( "inStock", stock )
-            .add( "product", product )
-            .toString();
+        return MoreObjects.toStringHelper( this ).add( "inStock", stock ).add( "product",
+            product ).toString();
     }
 }

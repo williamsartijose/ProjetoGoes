@@ -26,4 +26,15 @@ public interface StockItemRepository
     List<StockItem> findByStockGreaterThanAndProductPriceLessThan(
         long stock,
         long price );
+
+    // find by
+    List<StockItem> findByStockGreaterThanAndProductWeightLessThanAndProductPriceLessThan(
+        long stock,
+        long weigth,
+        long price );
+
+    List<StockItem> findByStockGreaterThanAndProductVolumeLessThanAndProductPriceLessThan(
+        long stock,
+        long volume,
+        long price );
 }

@@ -39,7 +39,8 @@ class StockItemController
         @PathVariable
         final Long productId )
     {
-        return new SuccessResponseBody( stockItemService.findByProductIdOrZeroQuantity( productId ) );
+        return new SuccessResponseBody(
+            stockItemService.findByProductIdOrZeroQuantity( productId ) );
     }
 
 }

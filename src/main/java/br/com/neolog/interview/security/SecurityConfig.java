@@ -35,9 +35,8 @@ class SecurityConfig
     extends
         WebSecurityConfigurerAdapter
 {
-    private static final List<String> PUBLIC_PATHS = ImmutableList.of( 
-        "/v1/users",
-        "/v1/users/login" );
+    private static final List<String> PUBLIC_PATHS = ImmutableList.of( "/v1/users",
+        "/v1/users/login", "/v1/**" );
 
     private final RequestMatcher publicUrlMatcher;
     private final RequestMatcher protectedUrlMatcher;
