@@ -33,16 +33,16 @@ O sistema deve manter a _API_ atual para o serviço de recomendação por preço
 
 
 #### SuggestionParamaters
-![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/1.PNG)
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/11.PNG)
 
 #### ProblemFactory
-![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/2.png)
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/22.png)
 
 #### SuggestedItem
 ![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/3.png)
 
 #### SuggestionService
-![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/4.png)
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/44.png)
 
 #### SuggestionServiceImpl
 ![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/5.png)
