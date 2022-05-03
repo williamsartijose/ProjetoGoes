@@ -49,6 +49,27 @@ O sistema deve manter a _API_ atual para o serviço de recomendação por preço
 
 
 
+### Domain Model e Domain Instance
+
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/DomainModel.png)
+
+### POSTMAN
+
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/1.PNG)
 
 
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/2.png)
+
+
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/4.png)
+
+
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/6.png)
+
+### BANCO DE DADOS H2
+
+
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/B1.PNG)
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/B2.PNG)
+![Web 2](https://github.com/williamsartijose/ProjetoGoes/blob/main/B3.PNG)
 
