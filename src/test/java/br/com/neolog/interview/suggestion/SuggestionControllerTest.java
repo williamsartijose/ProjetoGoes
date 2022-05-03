@@ -32,7 +32,7 @@ public class SuggestionControllerTest
         productHelper.createProductAndStock( 5, 200, 200, 200, 100 );
 
         //@formatter:off
-        final Response post = authenticatedRequest().contentType( ContentType.JSON ).content( new SuggestionParamaters( 190, null , null ) ).post();
+        final Response post = authenticatedRequest().contentType( ContentType.JSON ).content( new SuggestionParamaters( 190 ) ).post();
         post.then().log().all();
         final SuggestionResult result = post.as( SuggestionResult.class );
         assertThat( result.getData() ).hasSize( 3 )

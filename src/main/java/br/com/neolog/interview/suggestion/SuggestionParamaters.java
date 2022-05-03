@@ -7,37 +7,22 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 final class SuggestionParamaters
 {
-    private final Integer targetPrice;
-    private final Integer maximumVolume;
-    private final Integer maximumWeight;
+    private final Integer suggestionParamater;
 
     @JsonCreator
     SuggestionParamaters(
         @Positive
         @NotNull
-        final Integer targetPrice,
-        final Integer maximumVolume,
-        final Integer maximumWeight )
+        final Integer suggestionParamater )
     {
 
-        this.targetPrice = targetPrice;
-        this.maximumVolume = maximumVolume;
-        this.maximumWeight = maximumWeight;
+        this.suggestionParamater = suggestionParamater;
+
     }
 
-    public Integer getTargetPrice()
+    public Integer getSuggestionParamater()
     {
-        return targetPrice;
-    }
-
-    public Integer getMaximumVolume()
-    {
-        return maximumVolume;
-    }
-
-    public Integer getMaximumWeight()
-    {
-        return maximumWeight;
+        return suggestionParamater;
     }
 
 }

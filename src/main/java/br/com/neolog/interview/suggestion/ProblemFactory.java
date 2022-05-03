@@ -23,7 +23,7 @@ class ProblemFactory
     public Problem create(
         final SuggestionParamaters criteria )
     {
-        final Integer targetPrice = requireNonNull( criteria.getTargetPrice() );
+        final Integer targetPrice = requireNonNull( criteria.getSuggestionParamater() );
         final List<Item> items = generateItems( targetPrice );
         return new Problem( targetPrice, items );
     }
@@ -31,23 +31,18 @@ class ProblemFactory
     public Problem sugestionWeight(
         final SuggestionParamaters criteria )
     {
-        final Integer targetPrice = requireNonNull( criteria.getTargetPrice() );
-        final Integer maximumWeight = requireNonNull( criteria.getMaximumWeight() );
-        final List<Item> items = generateItemsSugestionWeight( maximumWeight, targetPrice );
-        return new Problem( targetPrice, items );
+        final Integer maximumWeight = requireNonNull( criteria.getSuggestionParamater() );
+        final List<Item> items = generateItemsSugestionWeight( maximumWeight );
+        return new Problem( maximumWeight, items );
     }
+
     public Problem sugestionVolume(
-            final SuggestionParamaters criteria )
+        final SuggestionParamaters criteria )
     {
-        final Integer targetPrice = requireNonNull( criteria.getTargetPrice() );
-        final Integer maximumVolume = requireNonNull( criteria.getMaximumVolume() );
-        final List<Item> items = generateItemsSugestionVolume( maximumVolume, targetPrice );
-        return new Problem( targetPrice, items );
+        final Integer maximumVolume = requireNonNull( criteria.getSuggestionParamater() );
+        final List<Item> items = generateItemsSugestionVolume( maximumVolume );
+        return new Problem( maximumVolume, items );
     }
-
-
-
-
 
     private List<Item> generateItems(
         final Integer targetPrice )
@@ -62,28 +57,28 @@ class ProblemFactory
     }
 
     private List<Item> generateItemsSugestionWeight(
-        Integer maximumWeight,
-        final Integer targetPrice )
+        final Integer maximumWeight )
     {
-        final List<StockItem> stockItems = stockItemRepository.findByStockGreaterThanAndProductWeightLessThanAndProductPriceLessThan(0, maximumWeight+1, targetPrice.longValue() + 1 );
+        final List<StockItem> stockItems = stockItemRepository.findByStockGreaterThanAndProductWeightLessThan(
+            0, maximumWeight + 1 );
         final List<Item> items = new LinkedList<>();
         for( final StockItem stockItem : stockItems ) {
-            items.addAll( convertStockItemToItems( stockItem, targetPrice ) );
-        }
-        return items;
-    }
-    private List<Item> generateItemsSugestionVolume(
-        Integer maximumVolume,
-        final Integer targetPrice )
-    {
-        final List<StockItem> stockItems = stockItemRepository.findByStockGreaterThanAndProductVolumeLessThanAndProductPriceLessThan(0, maximumVolume+1, targetPrice.longValue() + 1 );
-        final List<Item> items = new LinkedList<>();
-        for( final StockItem stockItem : stockItems ) {
-            items.addAll( convertStockItemToItems( stockItem, targetPrice ) );
+            items.addAll( convertStockItemToItemsWeigth( stockItem, maximumWeight ) );
         }
         return items;
     }
 
+    private List<Item> generateItemsSugestionVolume(
+        Integer maximumVolume )
+    {
+        final List<StockItem> stockItems = stockItemRepository.findByStockGreaterThanAndProductVolumeLessThan(
+            0, maximumVolume + 1 );
+        final List<Item> items = new LinkedList<>();
+        for( final StockItem stockItem : stockItems ) {
+            items.addAll( convertStockItemToItemsVolume( stockItem, maximumVolume ) );
+        }
+        return items;
+    }
 
     /**
      * Quebra um {@link StockItem} em diversos {@link Item}s. Cada instância de
@@ -102,6 +97,36 @@ class ProblemFactory
         final long maxQuantity = Math.min( targetPrice / price, stockItem.getStock().longValue() );
         for( int quantity = 0; quantity < maxQuantity; quantity++ ) {
             items.add( new Item( price, product.getId() ) );
+        }
+        return items;
+    }
+
+
+
+    private static List<Item> convertStockItemToItemsWeigth(
+            final StockItem stockItem,
+            final Integer maximumWeigth )
+    {
+        final List<Item> items = new LinkedList<>();
+        final Product product = stockItem.getProduct();
+        final long weigth = product.getWeight().longValue();
+        final long maxQuantity = Math.min( maximumWeigth / weigth, stockItem.getStock().longValue() );
+        for( int quantity = 0; quantity < maxQuantity; quantity++ ) {
+            items.add( new Item( weigth, product.getId() ) );
+        }
+        return items;
+    }
+
+    private static List<Item> convertStockItemToItemsVolume(
+            final StockItem stockItem,
+            final Integer maximumVolume )
+    {
+        final List<Item> items = new LinkedList<>();
+        final Product product = stockItem.getProduct();
+        final long volume = product.getVolume().longValue();
+        final long maxQuantity = Math.min( maximumVolume / volume, stockItem.getStock().longValue() );
+        for( int quantity = 0; quantity < maxQuantity; quantity++ ) {
+            items.add( new Item( volume, product.getId() ) );
         }
         return items;
     }

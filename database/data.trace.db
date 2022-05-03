@@ -734,3 +734,30 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:D:/work/work
 	at org.h2.mvstore.FileStore.open(FileStore.java:173)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:350)
 	... 147 more
+2022-05-01 19:16:08 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'NULL' (PRODUCT: PRODUCT_CATEGORY_ID BIGINT NOT NULL)"; SQL statement:
+UPDATE "PUBLIC"."PRODUCT" SET "ID"=? ,"DESCRIPTION"=? ,"NAME"=? ,"PRICE"=? ,"VOLUME"=? ,"WEIGHT"=? ,"PRODUCT_CATEGORY_ID"=?  WHERE "ID"=? [22018-197]
+2022-05-01 19:16:08 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'NULL' (PRODUCT: PRODUCT_CATEGORY_ID BIGINT NOT NULL)"; SQL statement:
+UPDATE "PUBLIC"."PRODUCT" SET "ID"=? ,"DESCRIPTION"=? ,"NAME"=? ,"PRICE"=? ,"VOLUME"=? ,"WEIGHT"=? ,"PRODUCT_CATEGORY_ID"=?  WHERE "ID"=? [22018-197]
+2022-05-01 19:18:48 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Table "PRODUCT_CATEGORY_ID" not found; SQL statement:
+DELETE FROM PRODUCT_CATEGORY_ID
+WHERE PRODUCT_CATEGORY_ID  = 1 [42102-197]
+2022-05-01 19:19:04 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Table "PRODUCT_CATEGORY_ID" not found; SQL statement:
+DELETE FROM PRODUCT_CATEGORY_ID
+WHERE PRODUCT_CATEGORY_ID  = 1 [42102-197]
+2022-05-01 19:19:08 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Table "PRODUCT_CATEGORY_ID" not found; SQL statement:
+DELETE FROM PRODUCT_CATEGORY_ID
+WHERE PRODUCT_CATEGORY_ID  = 2 [42102-197]
+2022-05-01 19:19:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "DROP PRODUCT_CATEGORY_ID[*] "; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"; SQL statement:
+drop PRODUCT_CATEGORY_ID [42001-197]
+2022-05-01 19:20:14 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "DROP PRODUCT_CATEGORY_ID[*]"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"; SQL statement:
+DROP PRODUCT_CATEGORY_ID [42001-197]
+2022-05-01 19:21:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "DATABASECHANGELOGLOCK" not found; SQL statement:
+SELECT COUNT(*) FROM PUBLIC.DATABASECHANGELOGLOCK [42102-197]

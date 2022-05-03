@@ -28,13 +28,11 @@ public interface StockItemRepository
         long price );
 
     // find by
-    List<StockItem> findByStockGreaterThanAndProductWeightLessThanAndProductPriceLessThan(
+    List<StockItem> findByStockGreaterThanAndProductWeightLessThan(
         long stock,
-        long weigth,
-        long price );
+        long weigth );
 
-    List<StockItem> findByStockGreaterThanAndProductVolumeLessThanAndProductPriceLessThan(
+    List<StockItem> findByStockGreaterThanAndProductVolumeLessThan(
         long stock,
-        long volume,
-        long price );
+        long volume );
 }
